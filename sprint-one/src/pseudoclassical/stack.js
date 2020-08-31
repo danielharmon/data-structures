@@ -19,4 +19,3 @@ Stack.prototype.size = function() {
 };
 
 
-
