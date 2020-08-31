@@ -17,4 +17,5 @@ class Stack {
   size() {
     return this.index;
   }
+
 }
