@@ -1,5 +1,5 @@
 var Queue = function() {
-
+  this;
 };
 Queue.prototype.start = 0;
 Queue.prototype.current = 0;
