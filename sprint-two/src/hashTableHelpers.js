@@ -22,12 +22,19 @@ var LimitedArray = function(limit) {
   limitedArray.set = function(index, value) {
     checkLimit(index);
     storage[index] = value;
+    // storage[index] = [];
+    // storage[index].push(value);
   };
   limitedArray.each = function(callback) {
     for (var i = 0; i < storage.length; i++) {
       callback(storage[i], i, storage);
     }
   };
+  limitedArray.remove = function(index) {
+    checkLimit(index);
+    delete storage[index];
+  };
+
 
   var checkLimit = function(index) {
     if (typeof index !== 'number') {
@@ -40,6 +47,7 @@ var LimitedArray = function(limit) {
 
   return limitedArray;
 };
+
 
 // This is a "hashing function". You don't need to worry about it, just use it
 // to turn any string into an integer that is well-distributed between the
