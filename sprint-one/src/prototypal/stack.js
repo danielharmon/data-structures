@@ -21,5 +21,3 @@ var stackMethods = {
     return this.index;
   }
 };
-
-

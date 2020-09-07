@@ -18,4 +18,3 @@ Stack.prototype.size = function() {
   return this.index;
 };
 
-

@@ -20,5 +20,3 @@ var stackMethods = {
   },
   size: function() { return this.index; }
 };
-
-

@@ -23,5 +23,3 @@ var queueMethods = {
     return (this.current - this.first) < 0 ? 0 : (this.current - this.first);
   }
 };
-
-
