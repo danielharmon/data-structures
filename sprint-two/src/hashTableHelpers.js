@@ -15,15 +15,21 @@ var LimitedArray = function(limit) {
   var storage = [];
 
   var limitedArray = {};
-  limitedArray.get = function(index) {
+  limitedArray.get = function(index, k) {
     checkLimit(index);
-    return storage[index];
+    var list = storage[index];
+    while (k !== list.key) {
+      list = list.next;
+    }
+    return list.value;
   };
-  limitedArray.set = function(index, value) {
+  limitedArray.set = function(index, value, key) {
     checkLimit(index);
-    storage[index] = value;
-    // storage[index] = [];
-    // storage[index].push(value);
+    if (!storage[index]) {
+      storage[index] = LinkedList().addToTail(value, key);
+    } else {
+      storage[index].addToTail(value, key);
+    }
   };
   limitedArray.each = function(callback) {
     for (var i = 0; i < storage.length; i++) {
@@ -65,3 +71,48 @@ var getIndexBelowMaxForKey = function(str, max) {
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+var LinkedList = function() {
+  var list = {};
+  list.head = null;
+  list.tail = null;
+
+  list.addToTail = function(value, key) {
+    if (list.head === null) {
+      list.head = Node(value, key);
+      list.tail = list.head;
+    } else {
+      list.tail.next = Node(value, key);
+      list.tail = list.tail.next;
+    }
+  };
+
+  list.removeHead = function() {
+    var temp = list.head;
+    list.head = list.head.next;
+    return temp.value;
+  };
+
+  list.contains = function(target) {
+    var recursive = function(node) {
+      if (node.value === target) {
+        return true;
+      } else if (node.next) {
+        return recursive(node.next);
+      } else if (!node.next) {
+        return false;
+      }
+    };
+    return recursive(this.head);
+  };
+
+  return list;
+};
+
+var Node = function(value, key) {
+  var node = {};
+  node.key = key;
+  node.value = value;
+  node.next = null;
+
+  return node;
+};
