@@ -55,7 +55,6 @@ describe('hashTable', function() {
       hashTable.insert(firstName, lastName);
       expect(hashTable.retrieve(firstName)).to.equal(lastName);
     });
-    console.log(hashTable);
     expect(hashTable._limit).to.equal(16);
   });
 

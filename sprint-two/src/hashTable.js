@@ -32,7 +32,6 @@ HashTable.prototype.double = function() {
   this._limit = this._limit * 2;
   this._tempStorage = LimitedArray(this._limit);
   this._storage.each(function(item) {
-    console.log('this: ' + this, 'item: ' + item);
   });
 };
 

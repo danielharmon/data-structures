@@ -60,4 +60,28 @@ describe('doublyLinkedList', function() {
     doublyLinkedList.addToTail(5);
     expect(doublyLinkedList.removeTail()).to.equal(5);
   });
+
+  it('should have a new tail after removing a tail', function() {
+    doublyLinkedList.addToTail(4);
+    doublyLinkedList.addToTail(5);
+    doublyLinkedList.removeTail();
+    expect(doublyLinkedList.tail.value).to.equal(4);
+  });
+
+  it('should correctly add to head', function() {
+    doublyLinkedList.addToHead(4);
+    expect(doublyLinkedList.head.value).to.equal(4);
+    doublyLinkedList.addToHead(5);
+    expect(doublyLinkedList.head.value).to.equal(5);
+    expect(doublyLinkedList.tail.value).to.equal(4);
+  });
+
+  it('should work the same regardless of whether you add to head or tail', function() {
+    doublyLinkedList.addToHead(5);
+    expect(doublyLinkedList.tail.value).to.equal(5);
+    expect(doublyLinkedList.head.value).to.equal(5);
+    doublyLinkedList.addToTail(6);
+    expect(doublyLinkedList.tail.value).to.equal(6);
+    expect(doublyLinkedList.head.value).to.equal(5);
+  });
 });

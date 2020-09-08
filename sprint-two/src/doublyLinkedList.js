@@ -16,7 +16,6 @@ var DoublyLinkedList = function() {
   list.removeHead = function() {
     var temp = list.head;
     list.head = list.head.next;
-    console.log(list.head);
     return temp.value;
   };
 
