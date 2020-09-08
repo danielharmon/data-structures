@@ -15,15 +15,34 @@ var LimitedArray = function(limit) {
   var storage = [];
 
   var limitedArray = {};
-  limitedArray.get = function(index) {
+  limitedArray.get = function(index, key) {
     checkLimit(index);
-    return storage[index];
+    // debugger;
+    if (storage[index]) {
+      var pointer = storage[index].head;
+      // get specific key value pair
+      while (pointer.key !== key) {
+        pointer = pointer.next;
+      }
+      return pointer.value;
+    } else {
+      return undefined;
+    }
   };
-  limitedArray.set = function(index, value) {
+  limitedArray.set = function(index, value, key) {
     checkLimit(index);
-    storage[index] = value;
-    // storage[index] = [];
-    // storage[index].push(value);
+    // if there is something at index,
+    if (storage[index]) {
+      // then add to list
+      if (key === storage[index].head.key) {
+        storage[index].head.value = value;
+      }
+      storage[index].addToTail(value, key);
+    } else {
+      // create a new LinkedList
+      storage[index] = LinkedList();
+      storage[index].addToTail(value, key);
+    }
   };
   limitedArray.each = function(callback) {
     for (var i = 0; i < storage.length; i++) {
