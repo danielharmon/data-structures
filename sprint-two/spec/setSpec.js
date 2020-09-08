@@ -3,6 +3,7 @@ describe('set', function() {
 
   beforeEach(function() {
     set = Set();
+    set2 = Set();
   });
 
   it('should have methods named "add", "contains", and "remove"', function() {
@@ -22,6 +23,16 @@ describe('set', function() {
     set.add('Mel Gibson');
     set.remove('Mel Gibson');
     expect(set.contains('Mel Gibson')).to.equal(false);
+  });
+
+  it('NEW: should return a new set containing the difference between sets', function() {
+    set.add('Danny');
+    set.add('Jenny');
+    set.add('Sam');
+    set.add('Barsha');
+    set2.add('Sam');
+    set2.add('Barsha');
+    expect(JSON.stringify(set.difference(set2)._storage)).to.equal('{"Danny":"Danny","Jenny":"Jenny"}');
   });
 
 });

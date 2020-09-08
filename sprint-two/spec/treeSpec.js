@@ -41,4 +41,12 @@ describe('tree', function() {
     expect(tree.contains(8)).to.equal(true);
   });
 
+  it('NEW: should return total number of nodes', function() {
+    tree.addChild(4);
+    tree.children[0].addChild(5);
+    tree.children[0].addChild(6);
+    tree.children[0].children[1].addChild(7);
+    expect(tree.size()).to.equal(5);
+  });
+
 });
