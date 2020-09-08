@@ -3,12 +3,12 @@ var LinkedList = function() {
   list.head = null;
   list.tail = null;
 
-  list.addToTail = function(value) {
+  list.addToTail = function(value, key) {
     if (list.head === null) {
-      list.head = Node(value);
+      list.head = Node(value, key);
       list.tail = list.head;
     } else {
-      list.tail.next = Node(value);
+      list.tail.next = Node(value, key);
       list.tail = list.tail.next;
     }
   };
@@ -35,9 +35,12 @@ var LinkedList = function() {
   return list;
 };
 
-var Node = function(value) {
+var Node = function(value, key) {
+  if (key = undefined) {
+    key = null;
+  }
   var node = {};
-
+  node.key = key;
   node.value = value;
   node.next = null;
 
