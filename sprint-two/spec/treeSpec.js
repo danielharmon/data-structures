@@ -52,7 +52,6 @@ describe('tree', function() {
     tree.addChild(5);
     tree.children[0].addChild(6);
     tree.children[0].children[0].removeFromParent();
-    console.log(tree);
     expect(tree.children[0].children.length).to.equal(0);
   });
 
