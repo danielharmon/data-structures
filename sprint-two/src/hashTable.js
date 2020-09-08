@@ -28,6 +28,9 @@ HashTable.prototype.remove = function(k) {
   this._storage.remove(index);
 };
 
+HashTable.prototype.clear = function() {
+  this._storage = LimitedArray(this._limit);
+};
 
 
 /*

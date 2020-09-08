@@ -52,4 +52,15 @@ describe('linkedList', function() {
   });
 
   // add more tests here to test the functionality of linkedList
+
+  it('NEW: should contain a value that was added, removed, and added again', function() {
+    linkedList.addToTail(4);
+    linkedList.addToTail(5);
+    linkedList.addToTail(6);
+    linkedList.removeNode(5);
+    expect(linkedList.contains(4)).to.equal(true);
+    expect(linkedList.contains(6)).to.equal(true);
+    expect(linkedList.contains(5)).to.equal(false);
+  });
+
 });

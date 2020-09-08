@@ -52,6 +52,21 @@ class BinarySearchTree {
     recursiveFunction(this);
   }
 
+  size() {
+    var count = 0;
+    var recursiveFunction = function(node) {
+      count++;
+      if (node.left) {
+        recursiveFunction(node.left);
+      }
+      if (node.right) {
+        recursiveFunction(node.right);
+      }
+    };
+    recursiveFunction(this);
+    return count;
+  }
+
 }
 
 /*

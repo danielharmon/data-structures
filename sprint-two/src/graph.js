@@ -6,6 +6,11 @@ var Graph = function() {
   this.edges = [];
 };
 
+// Return a count of nodes in the graph
+Graph.prototype.size = function() {
+  return this.nodes.length;
+};
+
 // Add a node to the graph, passing in the node's value.
 Graph.prototype.addNode = function(node) {
   this.nodes.push(node);

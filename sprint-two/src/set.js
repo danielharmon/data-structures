@@ -18,6 +18,17 @@ setPrototype.remove = function(item) {
   delete this._storage[item];
 };
 
+setPrototype.difference = function(otherSet) {
+  var returnSet = Set();
+  for (key in this._storage) {
+    if (!otherSet.contains(key)) {
+      returnSet.add(key);
+    }
+  }
+
+  return returnSet;
+};
+
 /*
  * Complexity: What is the time complexity of the above functions?
  */

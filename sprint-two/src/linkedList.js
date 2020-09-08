@@ -19,6 +19,20 @@ var LinkedList = function() {
     return temp.value;
   };
 
+  list.removeNode = function(target) {
+    var recursive = function(node) {
+      if (node.value === target) {
+        node.removeHead();
+      } else if (node.next.value === target) {
+        node.next = node.next.next;
+      } else if (node.next) {
+        recursive(node.next);
+      }
+    };
+    recursive(this.head);
+
+  };
+
   list.contains = function(target) {
     var recursive = function(node) {
       if (node.value === target) {

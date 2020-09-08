@@ -4,13 +4,24 @@ var Tree = function(value) {
 
   // your code here
   newTree.children = [];// fix me
-
   _.extend(newTree, treeMethods);
-
   return newTree;
 };
 
 var treeMethods = {};
+treeMethods.size = function(tree) {
+  var count = 0;
+  var recursive = function(node) {
+    count++;
+    if (node.children.length > 0) {
+      for (var i = 0; i < node.children.length; i++) {
+        recursive(node.children[i]);
+      }
+    }
+  };
+  recursive(this);
+  return count;
+};
 
 treeMethods.addChild = function(value) {
   this.children.push(Tree(value));
