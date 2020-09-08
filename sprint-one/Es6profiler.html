@@ -5,16 +5,16 @@
 
     <script src="../lib/jquery/jquery.js"></script>
     <script src="../lib/underscore/underscore.js"></script>
-    <script src="src/functional/stack.js"></script>
-    <script src="src/functional/queue.js"></script>
+    <script src="src/es6/stack.js"></script>
+    <script src="src/es6/queue.js"></script>
     <script>
       var stack = []
       var queue = []
       for (let i = 0; i < 100000; i++) {
-        stack.push(Stack());
+        stack.push(new Stack);
       }
       for (let j = 0; j < 100000; j++) {
-        queue.push(Queue());
+        queue.push(new Queue);
       }
     </script>
   </head>
