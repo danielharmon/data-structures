@@ -17,11 +17,13 @@ var LimitedArray = function(limit) {
   var limitedArray = {};
   limitedArray.get = function(index, k) {
     checkLimit(index);
-    var list = storage[index].head;
-    while (k !== list.key) {
-      list = list.next;
+    if (storage[index]) {
+      var list = storage[index].head;
+      while (k !== list.key) {
+        list = list.next;
+      }
+      return list.value;
     }
-    return list.value;
   };
   limitedArray.set = function(index, value, key) {
     checkLimit(index);
@@ -30,8 +32,8 @@ var LimitedArray = function(limit) {
       storage[index].addToTail(value, key);
     } else {
       //if key exists in list
-      var list = storage[index];
-      if (list.contains('key', key)) {
+      var list = storage[index].head;
+      if (storage[index].contains(key, 'key')) {
         //set value to new value at key
         while (list.key !== key) {
           list = list.next;
@@ -104,7 +106,8 @@ var LinkedList = function() {
     return temp.value;
   };
 
-  list.contains = function(property, target) {
+  list.contains = function(target, property) {
+    property = property || 'value';
     var recursive = function(node) {
       if (node[property] === target) {
         return true;
