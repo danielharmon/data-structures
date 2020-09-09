@@ -46,7 +46,15 @@ var LimitedArray = function(limit) {
   };
   limitedArray.each = function(callback) {
     for (var i = 0; i < storage.length; i++) {
-      callback(storage[i], i, storage);
+      if (!storage[i]) {
+        continue;
+      }
+      var list = storage[i].head;
+      while (list.next) {
+        callback(list, i, storage);
+        list = list.next;
+      }
+      callback(list, i, storage);
     }
   };
   limitedArray.remove = function(index) {
