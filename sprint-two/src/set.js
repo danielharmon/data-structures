@@ -1,33 +1,27 @@
 var Set = function() {
   var set = Object.create(setPrototype);
-  set._storage = {}; // fix me
+  set._limit = 8;
+  set._storage = LimitedArray(8); // fix me
   return set;
 };
 
 var setPrototype = {};
 
 setPrototype.add = function(item) {
-  this._storage[item] = item;
+  var index = getIndexBelowMaxForKey(item, this._limit);
+  this._storage.set(index, item, item);
 };
 
 setPrototype.contains = function(item) {
-  return this._storage[item] ? true : false;
+  var index = getIndexBelowMaxForKey(item, this._limit);
+  return this._storage.has(index) ? true : false;
 };
 
 setPrototype.remove = function(item) {
-  delete this._storage[item];
+  var index = getIndexBelowMaxForKey(item, this._limit);
+  delete this._storage.remove(index);
 };
 
-setPrototype.difference = function(otherSet) {
-  var returnSet = Set();
-  for (key in this._storage) {
-    if (!otherSet.contains(key)) {
-      returnSet.add(key);
-    }
-  }
-
-  return returnSet;
-};
 
 /*
  * Complexity: What is the time complexity of the above functions?

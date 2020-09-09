@@ -25,14 +25,16 @@ describe('set', function() {
     expect(set.contains('Mel Gibson')).to.equal(false);
   });
 
-  it('NEW: should return a new set containing the difference between sets', function() {
-    set.add('Danny');
-    set.add('Jenny');
-    set.add('Sam');
-    set.add('Barsha');
-    set2.add('Sam');
-    set2.add('Barsha');
-    expect(JSON.stringify(set.difference(set2)._storage)).to.equal('{"Danny":"Danny","Jenny":"Jenny"}');
+
+
+  it('NEW: should handle numbers', function() {
+    set.add(1);
+    expect(set.contains(1)).to.equal(true);
+  });
+
+  it ('New : should handle booleans', function() {
+    set.add(false);
+    expect(set.contains(false)).to.equal(true);
   });
 
 });

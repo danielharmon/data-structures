@@ -61,6 +61,10 @@ var LimitedArray = function(limit) {
     checkLimit(index);
     delete storage[index];
   };
+  limitedArray.has = function(index) {
+    checkLimit(index);
+    return (storage[index]);
+  };
 
 
   var checkLimit = function(index) {
