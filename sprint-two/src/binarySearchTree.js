@@ -52,6 +52,21 @@ class BinarySearchTree {
     recursiveFunction(this);
   }
 
+  breadthFirstLog(cb) {
+    var queue = new Queue;
+    var recursiveFunction = function(node) {
+      queue.enqueue(cb(node.value));
+      if (node.left) {
+        queue.enqueue(cb(node.left));
+      }
+      if (node.right) {
+        queue.enqueue(cb(node.right));
+      }
+      queue.dequeue(node);
+      recursiveFunction(queue.dequeue());
+    };
+    recursiveFunction(this);
+  }
   size() {
     var count = 0;
     var recursiveFunction = function(node) {
@@ -68,7 +83,28 @@ class BinarySearchTree {
   }
 
 }
+class Queue {
+  constructor() {
+    this.start = 0;
+    this.current = 0;
+  }
+  enqueue(value) {
+    this[this.current] = value;
+    this.current += 1;
+  }
+  dequeue() {
+    if (this.current > 0) {
+      var result = this[this.start];
+      delete this[this.start];
+      this.start += 1;
+      return result;
+    }
+  }
+  size() {
+    return (this.current - this.start) < 0 ? 0 : (this.current - this.start);
+  }
 
+}
 /*
  * Complexity: What is the time complexity of the above functions?
  */
