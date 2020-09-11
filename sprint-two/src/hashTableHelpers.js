@@ -19,12 +19,12 @@ var LimitedArray = function(limit) {
     checkLimit(index);
     // debugger;
     if (storage[index]) {
-      var pointer = storage[index].head;
+      var list = storage[index].head;
       // get specific key value pair
-      while (pointer.key !== key) {
-        pointer = pointer.next;
+      while (list.key !== key) {
+        list = list.next;
       }
-      return pointer.value;
+      return list.value;
     } else {
       return undefined;
     }
@@ -55,6 +55,7 @@ var LimitedArray = function(limit) {
         list = list.next;
       }
       callback(list, i, storage);
+
     }
   };
   limitedArray.remove = function(index) {

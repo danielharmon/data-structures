@@ -22,6 +22,10 @@ HashTable.prototype.retrieve = function(k) {
 HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
   this._storage.remove(index);
+  this.size--;
+  if (this.size === this._limit * .25) {
+    this.half();
+  }
 };
 
 HashTable.prototype.clear = function() {
@@ -34,9 +38,24 @@ HashTable.prototype.double = function() {
   this._limit = this._limit * 2;
   this._tempStorage = this._storage;
   this._storage = LimitedArray(this._limit);
+  this.size = 0;
   this._tempStorage.each(function(item) {
-    return item.key, item.value;
-  });
+    this.insert(item.key, item.value);
+  }.bind(this));
+
+  delete this._tempStorage;
+};
+
+HashTable.prototype.half = function() {
+  this._limit = this._limit / 2;
+  this._tempStorage = this._storage;
+  this._storage = LimitedArray(this._limit);
+  this.size = 0;
+  this._tempStorage.each(function(item) {
+    this.insert(item.key, item.value);
+  }.bind(this));
+
+  delete this._tempStorage;
 };
 
 
