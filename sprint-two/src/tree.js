@@ -1,7 +1,10 @@
-var Tree = function(value) {
+var Tree = function(value, parent) {
   var newTree = {};
   newTree.value = value;
-
+  if (parent === undefined) {
+    parent = null;
+  }
+  newTree.parent = parent;
   // your code here
   newTree.children = [];// fix me
   _.extend(newTree, treeMethods);
@@ -24,7 +27,16 @@ treeMethods.size = function(tree) {
 };
 
 treeMethods.addChild = function(value) {
-  this.children.push(Tree(value));
+  this.children.push(Tree(value, this));
+};
+treeMethods.removeFromParent = function() {
+  for (let i = 0; i < this.parent.children.length; i++) {
+    if (this.parent.children[i] === this) {
+      this.parent.children.splice(i, 1);
+    }
+  }
+
+  this.parent = null;
 };
 
 treeMethods.contains = function(target) {

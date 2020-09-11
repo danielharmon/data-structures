@@ -5,7 +5,8 @@ var HashTable = function() {
   this._storage = LimitedArray(this._limit);
 };
 
-HashTable.prototype.insert = function(k, v) {
+HashTable.prototype.insert = function(k, v, destination) {
+  destination = destination || this._storage;
   var index = getIndexBelowMaxForKey(k, this._limit);
   this._storage.set(index, v, k);
   this.size++;
