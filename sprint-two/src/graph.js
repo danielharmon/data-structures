@@ -30,12 +30,15 @@ Graph.prototype.contains = function(node) {
 Graph.prototype.removeNode = function(node) {
   var index = this.nodes.indexOf(node);
   this.nodes.splice(index, 1);
-  for (let k = 0; k < this.edges.length; k++) {
-    if (this.edges[k].split('').includes(node.toString())) {
-      this.edges.splice(k, 1);
+
+  var newEdges = [];
+  for (var k = 0; k < this.edges.length; k++) {
+    var pair = this.edges[k];
+    if (pair.includes(node) === false) {
+      newEdges.push(pair);
     }
   }
-
+  this.edges = newEdges;
 };
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.

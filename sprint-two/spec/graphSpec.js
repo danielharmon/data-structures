@@ -48,10 +48,16 @@ describe('graph', function() {
   it('should remove edges between nodes when a node is removed', function() {
     graph.addNode(4);
     graph.addNode(5);
+    graph.addNode(6);
     graph.addEdge(5, 4);
+    graph.addEdge(4, 6);
+    graph.addEdge(5, 6);
     expect(graph.hasEdge(4, 5)).to.equal(true);
-    graph.removeNode(5);
+    expect(graph.hasEdge(4, 6)).to.equal(true);
+    graph.removeNode(4);
     expect(graph.hasEdge(4, 5)).to.equal(false);
+    expect(graph.hasEdge(4, 6)).to.equal(false);
+    expect(graph.hasEdge(5, 6)).to.equal(true);
   });
 
   it('should execute a callback on each node in the graph', function() {
