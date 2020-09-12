@@ -54,18 +54,27 @@ class BinarySearchTree {
 
   breadthFirstLog(cb) {
     var queue = new Queue;
-    var recursiveFunction = function(node) {
-      queue.enqueue(cb(node.value));
+    var recursiveFunction = function(node, topLevel) {
+      if (topLevel) { queue.enqueue(node.value); }
       if (node.left) {
-        queue.enqueue(cb(node.left));
+        queue.enqueue(node.left.value);
       }
       if (node.right) {
-        queue.enqueue(cb(node.right));
+        queue.enqueue(node.right.value);
       }
-      queue.dequeue(node);
-      recursiveFunction(queue.dequeue());
+      if (node.left) {
+        recursiveFunction(node.left);
+      }
+      if (node.right) {
+        recursiveFunction(node.right);
+      }
     };
-    recursiveFunction(this);
+    recursiveFunction(this, true);
+    for (let key in queue) {
+      if (key !== 'start' && key !== 'current') {
+        cb(queue[key]);
+      }
+    }
   }
   size() {
     var count = 0;
