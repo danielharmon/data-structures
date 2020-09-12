@@ -18,7 +18,6 @@ var LimitedArray = function(limit) {
   var limitedArray = {};
   limitedArray.get = function(index, key) {
     checkLimit(index);
-    debugger;
     if (storage[index]) {
       var list = storage[index].head;
       // get specific key value pair

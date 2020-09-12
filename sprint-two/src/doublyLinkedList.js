@@ -5,10 +5,10 @@ var DoublyLinkedList = function() {
 
   dList.addToTail = function(value) {
     if (dList.head === null) {
-      dList.head = Node(value);
+      dList.head = Dnode(value);
       dList.tail = dList.head;
     } else {
-      dList.tail.next = Node(value, dList.tail);
+      dList.tail.next = Dnode(value, dList.tail);
       dList.tail = dList.tail.next;
     }
   };
@@ -33,11 +33,11 @@ var DoublyLinkedList = function() {
   };
   dList.addToHead = function(value) {
     if (dList.head === null) {
-      dList.head = Node(value);
+      dList.head = Dnode(value);
       dList.tail = dList.head;
     } else {
       //create a new node at the previous
-      dList.head.previous = Node(value);
+      dList.head.previous = Dnode(value);
       //set the new nodes next to be the head
       dList.head.previous.next = dList.head;
       //reset the head
@@ -54,7 +54,7 @@ var DoublyLinkedList = function() {
   return dList;
 };
 
-var Node = function(value, caller) {
+var Dnode = function(value, caller) {
   var node = {};
   if (caller === undefined) {
     caller = null;
