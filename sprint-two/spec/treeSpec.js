@@ -55,4 +55,20 @@ describe('tree', function() {
     expect(tree.children[0].children.length).to.equal(0);
   });
 
+  it('should traverse the tree and change the values', function() {
+    tree.addChild(5);
+    tree.addChild(6);
+    tree.children[0].addChild(7);
+    tree.children[1].addChild(8);
+    tree.traverse(function(node) {
+      node.value++;
+    });
+    expect(tree.contains(9)).to.equal(true);
+    expect(tree.contains(5)).to.equal(false);
+    expect(tree.contains(6)).to.equal(true);
+    expect(tree.contains(7)).to.equal(true);
+    expect(tree.contains(10)).to.equal(false);
+
+  });
+
 });

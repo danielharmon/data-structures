@@ -56,6 +56,18 @@ treeMethods.contains = function(target) {
 
 };
 
+treeMethods.traverse = function(cb) {
+  var recursive = function(node) {
+    cb(node);
+    if (node.children.length > 0) {
+      for (var i = 0; i < node.children.length; i++) {
+        recursive(node.children[i]);
+      }
+    }
+  };
+  recursive(this);
+};
+
 
 
 /*
