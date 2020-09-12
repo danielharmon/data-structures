@@ -1,25 +1,25 @@
 var DoublyLinkedList = function() {
-  var list = {};
-  list.head = null;
-  list.tail = null;
+  var dList = {};
+  dList.head = null;
+  dList.tail = null;
 
-  list.addToTail = function(value) {
-    if (list.head === null) {
-      list.head = Node(value);
-      list.tail = list.head;
+  dList.addToTail = function(value) {
+    if (dList.head === null) {
+      dList.head = Node(value);
+      dList.tail = dList.head;
     } else {
-      list.tail.next = Node(value, list.tail);
-      list.tail = list.tail.next;
+      dList.tail.next = Node(value, dList.tail);
+      dList.tail = dList.tail.next;
     }
   };
 
-  list.removeHead = function() {
-    var temp = list.head;
-    list.head = list.head.next;
+  dList.removeHead = function() {
+    var temp = dList.head;
+    dList.head = dList.head.next;
     return temp.value;
   };
 
-  list.contains = function(target) {
+  dList.contains = function(target) {
     var recursive = function(node) {
       if (node.value === target) {
         return true;
@@ -31,27 +31,27 @@ var DoublyLinkedList = function() {
     };
     return recursive(this.head);
   };
-  list.addToHead = function(value) {
-    if (list.head === null) {
-      list.head = Node(value);
-      list.tail = list.head;
+  dList.addToHead = function(value) {
+    if (dList.head === null) {
+      dList.head = Node(value);
+      dList.tail = dList.head;
     } else {
       //create a new node at the previous
-      list.head.previous = Node(value);
+      dList.head.previous = Node(value);
       //set the new nodes next to be the head
-      list.head.previous.next = list.head;
+      dList.head.previous.next = dList.head;
       //reset the head
-      list.head = list.head.previous;
+      dList.head = dList.head.previous;
     }
   };
-  list.removeTail = function() {
-    var temp = list.tail.value;
-    list.tail.previous.next = null;
-    list.tail = list.tail.previous;
+  dList.removeTail = function() {
+    var temp = dList.tail.value;
+    dList.tail.previous.next = null;
+    dList.tail = dList.tail.previous;
     return temp;
   };
 
-  return list;
+  return dList;
 };
 
 var Node = function(value, caller) {

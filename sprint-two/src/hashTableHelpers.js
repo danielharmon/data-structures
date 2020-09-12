@@ -1,3 +1,4 @@
+
 /*
  ********** NOTE: **********
  * Do not edit this code unless you see a bug!
@@ -17,7 +18,7 @@ var LimitedArray = function(limit) {
   var limitedArray = {};
   limitedArray.get = function(index, key) {
     checkLimit(index);
-    // debugger;
+    debugger;
     if (storage[index]) {
       var list = storage[index].head;
       // get specific key value pair
